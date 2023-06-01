@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "KeyCrm" = "KeyCrm" }
+
+[tool.setuptools.package-data]
+
+[project]
+name = "KeyCrm"
+version = "0.0.1"
+authors = [
+    { name = "Teri anric", email = "2005ahi2005@gmail.com"},
+]
+description = "KeyCRM OpenAPI"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    'requests ~= 2.30.0',
+    "pydantic ~= 1.10.7"
+]
+
+#[project.optional-dependencies]
+#test = ["pytest"]
+
+[project.urls]
+"Documentation KeyCrm" = "https://docs.keycrm.app/#/"
+#"Homepage" = "https://github.com/teri_anric/project"
+#"Bug Tracker" = "https://github.com/teri_anric/project/issues"
+
+#[project.scripts]
+#aerlis = "Aerlis.main:start"
