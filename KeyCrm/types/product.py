@@ -1,5 +1,6 @@
-from typing import List, Optional
 from datetime import datetime
+from typing import List, Optional
+
 from pydantic import BaseModel
 
 
@@ -51,6 +52,7 @@ class ProductCreateRequest(BaseModel):
     category_id: Optional[int] = None
     custom_fields: Optional[List[ShortCustomField]] = None
 
+
 class ProductsResponse(BaseModel):
     total: int
     current_page: int
@@ -60,10 +62,12 @@ class ProductsResponse(BaseModel):
     last_page_url: str
     next_page_url: Optional[str]
 
+
 class Category(BaseModel):
     id: int
     name: str
     parent_id: int
+
 
 class CategoriesResponse(BaseModel):
     total: int
@@ -73,5 +77,3 @@ class CategoriesResponse(BaseModel):
     first_page_url: str
     last_page_url: str
     next_page_url: Optional[str]
-
-

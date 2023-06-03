@@ -1,10 +1,13 @@
-from typing import List, Optional
-from pydantic import BaseModel
-from .product import Product
 from datetime import datetime
+from typing import List, Optional
+
+from pydantic import BaseModel
+
+
 class Property(BaseModel):
     name: str
     value: str
+
 
 class ShortProduct(BaseModel):
     id: int
@@ -27,7 +30,7 @@ class ShortProduct(BaseModel):
     created_at: datetime
     updated_at: datetime
     properties_agg: dict
-    #custom_fields: Optional[List[ShortCustomField]]
+    # custom_fields: Optional[List[ShortCustomField]]
 
 
 class Offer(BaseModel):
@@ -39,11 +42,12 @@ class Offer(BaseModel):
     purchased_price: float
     quantity: int
     weight: Optional[float]
-    length:  Optional[float]
-    width:  Optional[float]
+    length: Optional[float]
+    width: Optional[float]
     height: Optional[float]
     product: Optional[ShortProduct]
     properties: Optional[List[Property]]
+
 
 class UpdateOffer(BaseModel):
     id: Optional[int]
@@ -92,8 +96,8 @@ class OfferStocksResponse(BaseModel):
     last_page_url: str
     next_page_url: Optional[str]
 
+
 class UpdateStocks(BaseModel):
     id: Optional[int]
     sku: Optional[str]
     quantity: int
-

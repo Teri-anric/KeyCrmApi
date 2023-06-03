@@ -1,10 +1,12 @@
-from typing import List, Optional, Union, Dict, Any
+from typing import List, Optional, Union, Dict
 
 from KeyCrm.types.offers import OfferResponse, Offer, UpdateOffer, OfferStocksResponse, UpdateStocks
 from KeyCrm.utils import parse_filters
 
+
 class OfferMinix:
-    def get_offers(self, limit: int = 5, page: int = 1, include: Optional[str] = None, sort: Optional[str] = None,  filters: Optional[Dict[str, Union[str, list]]] = None) -> OfferResponse:
+    def get_offers(self, limit: int = 5, page: int = 1, include: Optional[str] = None, sort: Optional[str] = None,
+                   filters: Optional[Dict[str, Union[str, list]]] = None) -> OfferResponse:
         url = "/offers"
         params = {'limit': limit, 'page': page}
         if include is not None:
@@ -16,16 +18,16 @@ class OfferMinix:
 
         return OfferResponse.parse_obj(self._get_request(url, params))
 
-    def get_iter_all_offers(self, include: Optional[str] = None, sort: Optional[str] = None,  filters: Optional[Dict[str, Union[str, list]]] = None) -> List[Offer]:
+    def get_iter_all_offers(self, include: Optional[str] = None, sort: Optional[str] = None,
+                            filters: Optional[Dict[str, Union[str, list]]] = None) -> List[Offer]:
         i = 1
         while 1:
             result = self.get_offers(limit=50, page=i, include=include, sort=sort, filters=filters)
             for offer in result.data:
                 yield offer
             if not result.next_page_url:
-               break
+                break
             i += 1
-
 
     def update_offer(self, offers: List[UpdateOffer]):
         url = "/offers"
@@ -42,6 +44,5 @@ class OfferMinix:
 
     def update_stocks(self, warehouse_id: int, stocks: List[UpdateStocks]):
         url = "/offers/stocks"
-        data = {"warehouse_id": warehouse_id,  "stocks": [x.dict() for x in stocks]}
+        data = {"warehouse_id": warehouse_id, "stocks": [x.dict() for x in stocks]}
         return self._put_request(url, data).get('status', False)
-

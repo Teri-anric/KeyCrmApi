@@ -1,10 +1,13 @@
 from typing import List, Optional, Union, Dict, Any
 
-from KeyCrm.types.product import ProductsResponse, ProductCreateRequest, ShortCustomField, Product, CategoriesResponse, Category
+from KeyCrm.types.product import ProductsResponse, ProductCreateRequest, ShortCustomField, Product, CategoriesResponse, \
+    Category
 from KeyCrm.utils import parse_filters
 
+
 class ProductMinix:
-    def get_products(self, limit: int = 15, page: int = 1, include: Optional[str] = None, filters: Dict[str, Any] = None) -> ProductsResponse:
+    def get_products(self, limit: int = 15, page: int = 1, include: Optional[str] = None,
+                     filters: Dict[str, Any] = None) -> ProductsResponse:
         url = "/products"
         params = {'limit': limit if limit else 15, 'page': page if page else 1}
         if include is not None:
@@ -24,7 +27,7 @@ class ProductMinix:
                        price: Optional[float] = None, purchased_price: Optional[float] = None,
                        weight: Optional[float] = None, width: Optional[float] = None,
                        length: Optional[float] = None, height: Optional[float] = None,
-                       category_id: Optional[int] = None, custom_fields: Optional[ShortCustomField]=None
+                       category_id: Optional[int] = None, custom_fields: Optional[ShortCustomField] = None
                        ):
         url = "/products"
         request_data = ProductCreateRequest(
@@ -44,7 +47,7 @@ class ProductMinix:
         )
         self._post_request(url, request_data.dict())
 
-    def get_categories(self,  limit: int = 15, page: int = 1, filters: Optional[Dict[str, Union[str, list]]] = None):
+    def get_categories(self, limit: int = 15, page: int = 1, filters: Optional[Dict[str, Union[str, list]]] = None):
         url = "/products/categories"
         params = {'limit': limit, 'page': page}
         if filters is not None:

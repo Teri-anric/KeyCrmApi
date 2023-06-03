@@ -1,4 +1,6 @@
 import requests
+
+from KeyCrm.UserApi.types.account import User
 from KeyCrm.exceptions import UnAuthorizedError, TooManyRequests
 
 
@@ -25,12 +27,14 @@ class LoginMinix:
 
     def is_active(self):
         url = "billing/check"
-        return self._get_request(url, params=None).get('active', False)
+        try:
+            return self._get_request(url, params=None).get('active', False)
+        except UnAuthorizedError:
+            return False
 
     @property
     def base_url(self):
         return f"https://{self.domain}.api.keycrm.app/"
-
 
     def _send_request(self, method: str, url, **kwargs):
         for i in range(self.max_count_repair_request):
@@ -49,15 +53,15 @@ class LoginMinix:
                 raise response.raise_for_status()
         raise TooManyRequests()
 
-    def _get_request(self, url: str, params):
+    def _get_request(self, url: str, params=None):
         response = self._send_request("GET", url, params=params)
         return response
 
-    def _post_request(self, url: str, params = None, **kwargs):
+    def _post_request(self, url: str, params=None, **kwargs):
         response = self._send_request("POST", url, params=params, **kwargs)
         return response
 
-    def _put_request(self, url: str, data):
+    def _put_request(self, url: str, data=None):
         response = self._send_request("PUT", url, data=data)
         return response
 
@@ -69,3 +73,10 @@ class LoginMinix:
             return False
         self.token = token
         return True
+
+    def get_me(self):
+        url = "https://tested.api.keycrm.app/auth/profile"
+        try:
+            return User.parse_obj(self._get_request(url))
+        except UnAuthorizedError:
+            return None
