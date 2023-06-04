@@ -102,7 +102,7 @@ class Shipping(BaseModel):
     The phone number of the recipient (if different from the buyer).
     """
 
-    shipping_date_actual: Optional[str]
+    shipping_date_actual: Optional[datetime]
     """
     The actual shipping/delivery date.
     """
@@ -202,17 +202,17 @@ class Order(BaseModel):
     The payment status of the order.
     """
 
-    last_synced_at: str
+    last_synced_at: Optional[datetime]
     """
     The last synchronization date with the source in UTC format.
     """
 
-    created_at: str
+    created_at: Optional[datetime]
     """
     The creation date of the order in UTC format.
     """
 
-    updated_at: str
+    updated_at: Optional[datetime]
     """
     The last modification date of the order in UTC format.
     """
