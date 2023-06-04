@@ -5,13 +5,13 @@ from typing import Optional
 import requests
 
 from KeyCrm.exceptions import UnAuthorizedError, TooManyRequests
-from KeyCrm.minix import ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix
+from KeyCrm.minix import ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix, BuyerMinix
 
 BASE_API_URL = 'https://openapi.keycrm.app/v1'
 DEFAULT_LOGGER = getLogger("KeyCrm")
 
 
-class ApiCrm(ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix):
+class ApiCrm(ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix, BuyerMinix):
     def __init__(self, token: str, logger: Optional[Logger] = None, max_count_repair_request: int = 10):
         self.token = token
         self.log = logger if logger is not None else DEFAULT_LOGGER
