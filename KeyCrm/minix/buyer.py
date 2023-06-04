@@ -22,9 +22,9 @@ class BuyerMinix:
         if include:
             params['include'] = ','.join(include)  # Replace with the desired associations
 
-        return Buyer.parse_obj(self._request_get(url, params=params))
+        return Buyer.parse_obj(self._get_request(url, params=params))
 
-    def get_buyers(self, limit: int = 15, page: int = 1, filters: Optional[Dict[str, Union[str, int, list]]] = None, include: List[str] = None) -> List[Buyer]:
+    def get_buyers(self, limit: int = 15, page: int = 1, filters: Optional[Dict[str, Union[str, int, list]]] = None, include: List[str] = None) -> ListBuyer:
         """
         Retrieves a list of buyers.
 
@@ -49,4 +49,4 @@ class BuyerMinix:
         if include:
             params['include'] = ','.join(include)  # Convert the list to a comma-separated string
 
-        return [Buyer.parse_obj(buyer_data) for buyer_data in self._request_get(url, params=params)]
+        return ListBuyer.parse_obj(self._get_request(url, params=params))

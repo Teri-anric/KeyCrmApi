@@ -1,6 +1,6 @@
 from typing import List, Optional, Union, Dict, Any
 
-from KeyCrm.types.product import ListProducts, Product
+from KeyCrm.types.product import ListProducts, Product, CustomFieldProduct
 from KeyCrm.types.category import Category, ListCategories
 from KeyCrm.utils import parse_filters
 
@@ -27,7 +27,7 @@ class ProductMinix:
                        price: Optional[float] = None, purchased_price: Optional[float] = None,
                        weight: Optional[float] = None, width: Optional[float] = None,
                        length: Optional[float] = None, height: Optional[float] = None,
-                       category_id: Optional[int] = None, custom_fields: Optional[ShortCustomField] = None
+                       category_id: Optional[int] = None, custom_fields: Optional[CustomFieldProduct] = None
                        ):
         url = "/products"
         request_data = ProductCreateRequest(

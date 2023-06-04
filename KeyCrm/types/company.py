@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from typing import Optional
+
 class Company(BaseModel):
     """
     Information about the customer's company.
