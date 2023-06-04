@@ -161,17 +161,17 @@ class Order(BaseModel):
     The total expenses amount of the order.
     """
 
-    shipping_price: float
+    shipping_price: Optional[float]
     """
     The shipping cost of the order.
     """
 
-    wrap_price: float
+    wrap_price: Optional[float]
     """
     The gift wrapping cost of the order.
     """
 
-    taxes: float
+    taxes: Optional[float]
     """
     The total tax amount of the order.
     """
@@ -196,7 +196,7 @@ class Order(BaseModel):
     Indicates if the order is marked as a gift.
     """
 
-    payment_status: str
+    payment_status: Optional[str]
     """
     The payment status of the order.
     """
@@ -226,7 +226,7 @@ class Order(BaseModel):
     Information about the buyer. Only returned if 'include=buyer' is specified.
     """
 
-    products: List[dict]
+    products: Optional[List[dict]]
     """
     The list of products in the order.
     """
@@ -236,7 +236,7 @@ class Order(BaseModel):
     Information about the manager.
     """
 
-    tags: List[dict]
+    tags: Optional[List[dict]]
     """
     The list of tags associated with the order.
     """
@@ -251,7 +251,7 @@ class Order(BaseModel):
     Information about the marketing.
     """
 
-    payments: List[dict]
+    payments: Optional[List[dict]]
     """
     The list of payments associated with the order.
     """
@@ -261,12 +261,12 @@ class Order(BaseModel):
     Information about the shipping. Only returned if 'include=shipping' is specified.
     """
 
-    expenses: List[dict]
+    expenses: Optional[List[dict]]
     """
     The list of expenses associated with the order.
     """
 
-    custom_fields: List[dict]
+    custom_fields: Optional[List[dict]]
     """
     The list of custom fields in the order.
     """
