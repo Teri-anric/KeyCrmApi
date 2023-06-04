@@ -9,7 +9,7 @@ package-dir = { "KeyCrm" = "KeyCrm" }
 
 [project]
 name = "KeyCrm"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
     { name = "Teri anric", email = "2005ahi2005@gmail.com"},
 ]
