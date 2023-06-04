@@ -1,7 +1,7 @@
 from typing import List, Optional, Union, Dict, Any
 
-from KeyCrm.types.product import ProductsResponse, ProductCreateRequest, ShortCustomField, Product, CategoriesResponse, \
-    Category
+from KeyCrm.types.product import ProductsResponse, ProductCreateRequest, ShortCustomField, Product
+from KeyCrm.types.category import ListCategories, Category
 from KeyCrm.utils import parse_filters
 
 
@@ -53,7 +53,7 @@ class ProductMinix:
         if filters is not None:
             params.update(parse_filters(filters))
 
-        return CategoriesResponse.parse_obj(self._get_request(url, params))
+        return ListCategories.parse_obj(self._get_request(url, params))
 
     def create_category(self, name: str, parent_id: Optional[int] = None):
         url = "/products/categories"
