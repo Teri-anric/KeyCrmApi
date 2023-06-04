@@ -3,7 +3,7 @@ from KeyCrm.utils import parse_filters
 from typing import Optional, List, Dict, Union
 
 class BuyerMinix:
-    def get_buyer(self, buyer_id: str, include: List[str]) -> Buyer:
+    def get_buyer(self, buyer_id: str, include: List[str] = None) -> Buyer:
         """
         Retrieves the buyer entity by the provided identifier.
 
