@@ -6,7 +6,7 @@ from pydantic import BaseModel, HttpUrl
 from .base import ListResponse
 
 
-class CustomField(BaseModel):
+class CustomFieldProduct(BaseModel):
     """
     Represents a custom field in the product.
     """
@@ -162,7 +162,7 @@ class Product(BaseModel):
     Example: 2020-05-16 17:00:07
     """
 
-    custom_fields: List[CustomField]
+    custom_fields: List[CustomFieldProduct]
     """
     The custom fields in the product. Only returned if 'include=custom_fields' is specified.
     """
@@ -185,4 +185,4 @@ class ProductCreateRequest(BaseModel):
     length: Optional[float] = None
     height: Optional[float] = None
     category_id: Optional[int] = None
-    custom_fields: Optional[List[ShortCustomField]] = None
+    custom_fields: Optional[List[CustomFieldProduct]] = None

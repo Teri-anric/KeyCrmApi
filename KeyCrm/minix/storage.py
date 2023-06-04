@@ -15,7 +15,7 @@ class StorageMinix:
         if filters is not None:
             params['filter'] = filters
 
-        # Perform the get_request and parse the response into CustomField objects
+        # Perform the get_request and parse the response into CustomFieldProduct objects
         response = self._get_request(url, params)
         data = response.json()
 
@@ -31,5 +31,4 @@ class StorageMinix:
         response = self._post_request(url, headers=headers, files=files)
         data = response.json()
 
-        # Parse the response into a CustomField object
         return File.parse_obj(data)

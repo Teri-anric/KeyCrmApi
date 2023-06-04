@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl
-from typing import List, Optional
+from typing import List, Optional, Any
 
 class ListResponse(BaseModel):
     """
@@ -24,7 +24,7 @@ class ListResponse(BaseModel):
     Example: 15
     """
 
-    data: List[...]
+    data: List[Any]
     """
     The actual data array representing the items in the response.
     """
