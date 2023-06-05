@@ -75,7 +75,7 @@ class LoginMinix:
         return True
 
     def get_me(self):
-        url = "https://tested.api.keycrm.app/auth/profile"
+        url = "auth/profile"
         try:
             return User.parse_obj(self._get_request(url))
         except UnAuthorizedError:

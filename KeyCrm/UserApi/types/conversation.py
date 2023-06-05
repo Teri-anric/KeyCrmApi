@@ -26,7 +26,7 @@ class Message(BaseModel):
     The type of the message content.
     """
 
-    sender_id: int
+    sender_id: Optional[int]
     """
     The ID of the sender.
     """
@@ -46,7 +46,7 @@ class Message(BaseModel):
     The state of the message.
     """
 
-    error_message: str
+    error_message: Optional[str]
     """
     The error message associated with the message.
     """
@@ -101,17 +101,17 @@ class Message(BaseModel):
     The deletion timestamp of the message, if deleted.
     """
 
-    channel_driver: str
+    channel_driver: Optional[str]
     """
     The channel driver of the message.
     """
 
-    channel_name: str
+    channel_name: Optional[str]
     """
     The channel name of the message.
     """
 
-    model: str
+    model: Optional[str]
     """
     The model type of the message.
     """

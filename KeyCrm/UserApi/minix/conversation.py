@@ -2,7 +2,7 @@ from KeyCrm.UserApi.types.conversation import Message
 
 class ConversationMinix:
     def message_by_client(self, client_id: int):
-        url = f"/conversations/messages/by_client/{client_id}"
+        url = f"conversations/messages/by_client/{client_id}"
         return [Message.parse_obj(obj) for obj in self._get_request(url)]
 
     def send_message(self, conversation_id: int, text: str):
