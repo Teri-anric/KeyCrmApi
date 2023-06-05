@@ -166,7 +166,7 @@ class Client(BaseModel):
     The profiles associated with the client.
     """
 
-    shipping_addresses: List[str]
+    shipping_addresses: List[dict]
     """
     The shipping addresses of the client.
     """
