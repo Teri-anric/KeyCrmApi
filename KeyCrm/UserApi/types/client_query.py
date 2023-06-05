@@ -196,11 +196,6 @@ class ClientQueryList(BaseModel):
     The URL of the first page.
     """
 
-    from_: int
-    """
-    The starting index of the clients.
-    """
-
     last_page: int
     """
     The last page number.
