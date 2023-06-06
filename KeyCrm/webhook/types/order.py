@@ -12,8 +12,8 @@ class OrderStatusChangeContext(BaseModel):
     grand_total: int
     total_discount: int
     expenses_sum: int
-    discount_amount: int
-    discount_percent: int
+    discount_amount: Optional[int]
+    discount_percent: Optional[int]
     shipping_price: Optional[str]
     taxes: Optional[str]
     fiscal_result: List[str]
