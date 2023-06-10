@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 from pydantic import BaseModel
 
 class Message(BaseModel):
@@ -31,7 +31,7 @@ class Message(BaseModel):
     The ID of the sender.
     """
 
-    message_body: str
+    message_body: Optional[str]
     """
     The body/content of the message.
     """
@@ -66,7 +66,7 @@ class Message(BaseModel):
     The ID of the replied message, if any.
     """
 
-    attachments: List[str]
+    attachments: List[Any]
     """
     The attachments associated with the message.
     """

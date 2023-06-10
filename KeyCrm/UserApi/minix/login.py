@@ -66,8 +66,9 @@ class LoginMinix:
         return response
 
     def login(self, email, password):
+        url = 'auth/login'
         params = {"username": email, "password": password}
-        result = self._post_request('auth/login', params=params)
+        result = self._post_request(url, params=params)
         token = result.get('token', None)
         if not token:
             return False
