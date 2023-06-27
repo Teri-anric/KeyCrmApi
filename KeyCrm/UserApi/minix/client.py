@@ -10,4 +10,7 @@ class ClientMinix:
     def sreach_client(self, query):
         url = "clients"
         params = {"query": query}
-        return ClientQueryList.parse_obj(self._get_request(url, params=params))
+        obj = self._get_request(url, params=params)
+        if obj:
+            return ClientQueryList.parse_obj(obj)
+        return None

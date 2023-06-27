@@ -56,7 +56,7 @@ class Message(BaseModel):
     Indicates if the message is a reply.
     """
 
-    external_id: str
+    external_id: Optional[str]
     """
     The external ID of the message.
     """
