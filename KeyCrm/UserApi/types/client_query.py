@@ -235,3 +235,4 @@ class ClientQueryList(BaseModel):
     """
     The total number of clients.
     """
+
