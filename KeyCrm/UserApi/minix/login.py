@@ -41,6 +41,8 @@ class LoginMinix:
             response = self._session.request(method, self.base_url + url, **kwargs)
             if response.status_code in [200, 201, 202]:
                 return response.json()
+            elif response.status_code == 204:
+                return {}
             elif response.status_code == 401:
                 raise UnAuthorizedError(response.json().get('message', "Unauthenticated"))
             elif response.status_code == 422:
@@ -63,6 +65,10 @@ class LoginMinix:
 
     def _put_request(self, url: str, data=None):
         response = self._send_request("PUT", url, data=data)
+        return response
+
+    def _delete_request(self, url: str):
+        response = self._send_request("DELETE", url)
         return response
 
     def login(self, email, password):
