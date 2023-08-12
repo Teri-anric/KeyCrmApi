@@ -4,6 +4,8 @@ from KeyCrm.types.product import ListProducts, Product, CustomFieldProduct
 from KeyCrm.types.category import Category, ListCategories
 from KeyCrm.utils import parse_filters
 
+from KeyCrm.exceptions import NotFound
+
 
 class ProductMinix:
     def get_products(self, limit: int = 15, page: int = 1, include: List[str] = None,
@@ -17,10 +19,13 @@ class ProductMinix:
 
         return ListProducts.parse_obj(self._get_request(url, params))
 
-    def get_product(self, product_id: Union[int, str], include: List[str] = None) -> Product:
+    def get_product(self, product_id: Union[int, str], include: List[str] = None) -> Optional[Product]:
         url = f"/products/{product_id}"
         params = {} if include is None else {'include': ",".join(include)}
-        return Product.parse_obj(self._get_request(url, params))
+        try:
+            return Product.parse_obj(self._get_request(url, params))
+        except NotFound:
+            return None
 
     def create_product(self, name: str, description: Optional[str] = None, pictures: Optional[List[str]] = None,
                        currency_code: Optional[str] = None, sku: Optional[str] = None, barcode: Optional[str] = None,

@@ -1,7 +1,10 @@
 from pydantic import BaseModel, HttpUrl
-from typing import List, Optional, Any
+from pydantic.generics import GenericModel
+from typing import List, Optional, Any, TypeVar, Generic
 
-class ListResponse(BaseModel):
+T = TypeVar('T')
+
+class ListResponse(GenericModel, Generic[T]):
     """
     Represents a List response.
     """
@@ -24,7 +27,7 @@ class ListResponse(BaseModel):
     Example: 15
     """
 
-    data: List[Any]
+    data: List[T]
     """
     The actual data array representing the items in the response.
     """
@@ -49,3 +52,6 @@ class ListResponse(BaseModel):
 
     def __iter__(self):
         return iter(self.data)
+
+    def __getitem__(self, item) -> T:
+        return self.data[item]

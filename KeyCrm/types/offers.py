@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import List, Optional
 
+from .base import ListResponse
+
 from pydantic import BaseModel
 
 
@@ -52,22 +54,17 @@ class Offer(BaseModel):
 class UpdateOffer(BaseModel):
     id: Optional[int]
     sku: Optional[str]
-    price: float
-    purchased_price: float
-    weight: float
-    height: int
-    length: int
-    width: int
+    price: Optional[float]
+    purchased_price: Optional[float]
+    weight: Optional[float]
+    height: Optional[int]
+    length: Optional[int]
+    width: Optional[int]
 
 
-class OfferResponse(BaseModel):
-    total: int
-    current_page: int
-    per_page: int
-    data: List[Offer]
-    first_page_url: str
-    last_page_url: str
-    next_page_url: Optional[str]
+
+class OfferResponse(ListResponse[Offer]):
+    ...
 
 
 class Warehouse(BaseModel):
@@ -87,14 +84,8 @@ class OfferStocks(BaseModel):
     warehouse: Optional[List[Warehouse]]
 
 
-class OfferStocksResponse(BaseModel):
-    total: int
-    current_page: int
-    per_page: int
-    data: List[OfferStocks]
-    first_page_url: str
-    last_page_url: str
-    next_page_url: Optional[str]
+class OfferStocksResponse(ListResponse[OfferStocks]):
+    ...
 
 
 class UpdateStocks(BaseModel):

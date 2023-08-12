@@ -29,10 +29,10 @@ class OfferMinix:
                 break
             i += 1
 
-    def update_offer(self, offers: List[UpdateOffer]):
+    def update_offer(self, offers: List[UpdateOffer]) -> bool:
         url = "/offers"
         data = {"offers": [x.dict() for x in offers]}
-        return self.put_request(url, data).get('status', False)
+        return self._put_request(url, data).get('status', False)
 
     def get_stocks(self, limit: int = 5, page: int = 1, filters: Optional[Dict[str, Union[str, list]]] = None):
         url = "/offers/stocks"

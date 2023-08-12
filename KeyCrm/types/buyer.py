@@ -94,12 +94,7 @@ class Buyer(BaseModel):
     Example: 2020-05-16 17:00:07
     """
 
-class ListBuyer(ListResponse):
+class ListBuyer(ListResponse[Buyer]):
     """
     An array of buyers in the response from the server
-    """
-
-    data: List[Buyer]
-    """
-    List for buyers
     """

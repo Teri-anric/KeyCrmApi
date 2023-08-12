@@ -30,11 +30,14 @@ class ApiCrm(ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix, BuyerMin
 
     def _send_request(self, method: str, url, **kwargs):
         for i in range(self.max_count_repair_request):
+            self.log.info(f"send {method} request for {url}")
             response = self._session.request(method, url, **kwargs)
             if response.status_code in [200, 201, 202]:
                 return response.json()
             elif response.status_code == 401:
                 raise UnAuthorizedError(response.json().get('message', "Unauthenticated"))
+            elif response.status_code == 404:
+                raise NotFound(f"Not Found for url: {url}")
             elif response.status_code == 422:
                 raise ValueError(response.json().get('message'))
             elif response.status_code == 429:
@@ -43,6 +46,7 @@ class ApiCrm(ProductMinix, CustomFieldsMinix, OfferMinix, StorageMinix, BuyerMin
                 sleep(t if t > 0 else 5)
                 continue
             else:
+                self.log.error(f"error response code {response.status_code} text: {response.text}")
                 raise response.raise_for_status()
         raise TooManyRequests()
 

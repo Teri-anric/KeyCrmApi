@@ -81,7 +81,7 @@ class Product(BaseModel):
     Example: 124.5
     """
 
-    description: str
+    description: Optional[str]
     """
     The description of the product.
     """
@@ -113,22 +113,22 @@ class Product(BaseModel):
     The maximum price of the product variants. If the product has no variants (has_offers == false), it will be equal to the product price.
     """
 
-    weight: float
+    weight: Optional[float]
     """
     The default weight of the product.
     """
 
-    length: float
+    length: Optional[float]
     """
     The default length of the product.
     """
 
-    width: float
+    width: Optional[float]
     """
     The default width of the product.
     """
 
-    height: float
+    height: Optional[float]
     """
     The default height of the product in system units.
     """
@@ -162,13 +162,13 @@ class Product(BaseModel):
     Example: 2020-05-16 17:00:07
     """
 
-    custom_fields: List[CustomFieldProduct]
+    custom_fields: Optional[List[CustomFieldProduct]]
     """
     The custom fields in the product. Only returned if 'include=custom_fields' is specified.
     """
 
-class ListProducts(ListResponse):
-    data: List[Product]
+class ListProducts(ListResponse[Product]):
+    ...
 
 
 

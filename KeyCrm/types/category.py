@@ -27,8 +27,7 @@ class Category(BaseModel):
     """
 
 
-class ListCategories(ListResponse):
+class ListCategories(ListResponse[Category]):
     """
     An array of Category in the response from the server
     """
-    data: List[Category]
