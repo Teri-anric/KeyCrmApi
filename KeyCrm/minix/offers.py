@@ -1,4 +1,4 @@
-from typing import List, Optional, Union, Dict
+from typing import List, Optional, Union, Dict, Iterator
 
 from KeyCrm.types.offers import OfferResponse, Offer, UpdateOffer, OfferStocksResponse, UpdateStocks
 from KeyCrm.utils import parse_filters
@@ -19,7 +19,7 @@ class OfferMinix:
         return OfferResponse.parse_obj(self._get_request(url, params))
 
     def get_iter_all_offers(self, include: Optional[str] = None, sort: Optional[str] = None,
-                            filters: Optional[Dict[str, Union[str, list]]] = None) -> List[Offer]:
+                            filters: Optional[Dict[str, Union[str, list]]] = None) -> Iterator[Offer]:
         i = 1
         while 1:
             result = self.get_offers(limit=50, page=i, include=include, sort=sort, filters=filters)

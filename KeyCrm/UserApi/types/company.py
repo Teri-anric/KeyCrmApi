@@ -1,4 +1,4 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Iterator
 from pydantic import BaseModel
 
 class Field(BaseModel):
@@ -101,3 +101,26 @@ class Company(BaseModel):
     The custom field values associated with the company.
     """
 
+class CompanyList(BaseModel):
+    current_page: int
+    data: List[Company]
+    first_page_url: str
+    from_: int  # Use "from_" to avoid the "from" keyword conflict
+    last_page: int
+    last_page_url: str
+    next_page_url: Optional[str]
+    path: str
+    per_page: int
+    prev_page_url: Optional[str]
+    to: int
+    total: int
+
+    def __init__(self, **kwargs):
+        kwargs['from_'] = kwargs.pop('from')
+        super().__init__(**kwargs)
+
+    def __getitem__(self, item: int) -> Company:
+        return self.data[item]
+
+    def __iter__(self) -> Iterator[Company]:
+        return iter(self.data)
