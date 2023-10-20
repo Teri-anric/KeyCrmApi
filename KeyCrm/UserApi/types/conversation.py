@@ -116,7 +116,7 @@ class Message(BaseModel):
     The model type of the message.
     """
 
-    reply_message: Optional[str]
+    #reply_message: Optional[str]
     """
     The reply message content, if any.
     """
