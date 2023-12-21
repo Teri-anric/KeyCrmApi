@@ -1,11 +1,10 @@
 from typing import List, Optional, Any
 from pydantic import BaseModel
 
-class Message(BaseModel):
+class BaseMessage(BaseModel):
     """
     Represents a message.
     """
-
     id: int
     """
     The ID of the message.
@@ -34,11 +33,6 @@ class Message(BaseModel):
     message_body: Optional[str]
     """
     The body/content of the message.
-    """
-
-    context: List[str]
-    """
-    The context of the message.
     """
 
     state: str
@@ -101,6 +95,8 @@ class Message(BaseModel):
     The deletion timestamp of the message, if deleted.
     """
 
+
+class Message(BaseMessage):
     channel_driver: Optional[str]
     """
     The channel driver of the message.
@@ -114,6 +110,11 @@ class Message(BaseModel):
     model: Optional[str]
     """
     The model type of the message.
+    """
+
+    context: List[str]
+    """
+    The context of the message.
     """
 
     #reply_message: Optional[str]

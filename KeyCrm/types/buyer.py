@@ -77,7 +77,7 @@ class Buyer(BaseModel):
     Information about delivery addresses. Only the filled ones are returned if include="shipping" is specified.
     """
 
-    custom_fields: List[CustomFieldBuyer]
+    custom_fields: Optional[List[CustomFieldBuyer]]
     """
     Custom fields for the buyer. Only the filled ones are returned if include="custom_fields" is specified.
     """
