@@ -23,7 +23,7 @@ class ConversationMinix:
             reply_message=None,
             type=type_
         )
-        return self._post_request(url, params=params)
+        return self._post_request(url, json=params)
 
     def send_message_note(self, conversation_id: int, text: str):
         return self._send_message(conversation_id, "notes", text)

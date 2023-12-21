@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel
 
 from .conversation_message import ConversationMessage
@@ -39,7 +39,7 @@ class Channel(BaseModel):
     pipeline_id: Optional[int]
     settings: dict
     driver_type: str
-    roles: List[str]
+    roles: List[Union[str, dict]]
 
 
 class Conversation(BaseModel):
