@@ -73,3 +73,8 @@ class ConversationMinix:
             params["before"] = before
         data = self._get_request(url, params=params)
         return MessageList.parse_obj(data)
+
+    def set_conversation_assigne(self, conversation_id: int, user_id: int = ""):
+        url = f"conversations/{conversation_id}"
+        data = {"id": conversation_id, "assigned_user_id": user_id}
+        return self._put_request(url, data=data)
