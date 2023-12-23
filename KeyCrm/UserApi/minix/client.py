@@ -15,6 +15,10 @@ class ClientMinix:
             return ClientQueryList.parse_obj(obj)
         return None
 
-    def contact_swith_client(self, contact_id: int, client_id: int):
+    def contact_set_client(self, contact_id: int, client_id: int):
+        url = f"clients/contacts/{contact_id}/assign/{client_id}"
+        return self._put_request(url)
+
+    def contact_switch_client(self, contact_id: int, client_id: int):
         url = f"clients/contacts/{contact_id}/switch/{client_id}"
         return self._put_request(url)

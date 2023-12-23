@@ -55,16 +55,16 @@ class LoginMinix:
                 raise response.raise_for_status()
         raise TooManyRequests()
 
-    def _get_request(self, url: str, params=None):
-        response = self._send_request("GET", url, params=params)
+    def _get_request(self, url: str, params=None, **kwargs):
+        response = self._send_request("GET", url, params=params, **kwargs)
         return response
 
     def _post_request(self, url: str, params=None, **kwargs):
         response = self._send_request("POST", url, params=params, **kwargs)
         return response
 
-    def _put_request(self, url: str, data=None):
-        response = self._send_request("PUT", url, data=data)
+    def _put_request(self, url: str, data=None, **kwargs):
+        response = self._send_request("PUT", url, data=data, **kwargs)
         return response
 
     def _delete_request(self, url: str):

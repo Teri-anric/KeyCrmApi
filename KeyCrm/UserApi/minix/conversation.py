@@ -1,7 +1,8 @@
 from typing import Literal, Union, List, Dict
 
-from KeyCrm.UserApi.types.conversation import Message, ConversationList, MessageList
+from KeyCrm.UserApi.types.conversation import Message, ConversationList, MessageList, Conversation
 from KeyCrm.utils import parse_filters
+from datetime import datetime
 
 
 class ConversationMinix:
@@ -74,7 +75,14 @@ class ConversationMinix:
         data = self._get_request(url, params=params)
         return MessageList.parse_obj(data)
 
-    def set_conversation_assigne(self, conversation_id: int, user_id: int = ""):
+    def update_conversation(self, conversation_id: int, **params) -> Conversation:
+        """ Update a conversation """
         url = f"conversations/{conversation_id}"
-        data = {"id": conversation_id, "assigned_user_id": user_id}
-        return self._put_request(url, data=data)
+        payload = {"id": conversation_id, **params}
+        return Conversation.parse_obj(self._put_request(url, json=data))
+
+    def close_conversation(self, conversation_id: int):
+        return self.update_conversation(conversation_id, archived_at=int(datetime.now().timestamp()))
+
+    def set_conversation_assigne(self, conversation_id: int, user_id: int = ""):
+        return self.update_conversation(conversation_id, assigned_user_id=user_id)
