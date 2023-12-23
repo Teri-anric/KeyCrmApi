@@ -79,7 +79,7 @@ class ConversationMinix:
         """ Update a conversation """
         url = f"conversations/{conversation_id}"
         payload = {"id": conversation_id, **params}
-        return Conversation.parse_obj(self._put_request(url, json=data))
+        return Conversation.parse_obj(self._put_request(url, json=payload))
 
     def close_conversation(self, conversation_id: int):
         return self.update_conversation(conversation_id, archived_at=int(datetime.now().timestamp()))
