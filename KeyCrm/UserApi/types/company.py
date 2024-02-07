@@ -105,14 +105,14 @@ class CompanyList(BaseModel):
     current_page: int
     data: List[Company]
     first_page_url: str
-    from_: int  # Use "from_" to avoid the "from" keyword conflict
+    from_: Optional[int]  # Use "from_" to avoid the "from" keyword conflict
     last_page: int
     last_page_url: str
     next_page_url: Optional[str]
     path: str
     per_page: int
     prev_page_url: Optional[str]
-    to: int
+    to: Optional[int]
     total: int
 
     def __init__(self, **kwargs):
