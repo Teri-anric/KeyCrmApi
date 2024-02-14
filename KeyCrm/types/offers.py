@@ -20,14 +20,14 @@ class ShortProduct(BaseModel):
     thumbnail_url: Optional[str]
     quantity: int
     currency_code: str
-    min_price: float
-    max_price: float
-    weight: float
-    length: int
-    width: int
-    height: float
-    has_offers: bool
-    is_archived: bool
+    min_price: float = 0
+    max_price: float = 0
+    weight: float = None
+    length: int = None
+    width: int = None
+    height: float = None
+    has_offers: bool = False
+    is_archived: bool = False
     category_id: Optional[int]
     created_at: datetime
     updated_at: datetime
