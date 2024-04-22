@@ -18,16 +18,16 @@ class ShortProduct(BaseModel):
     barcode: Optional[str]
     description: Optional[str]
     thumbnail_url: Optional[str]
-    quantity: int
-    currency_code: str
-    min_price: float = 0
-    max_price: float = 0
-    weight: float = None
-    length: int = None
-    width: int = None
-    height: float = None
+    quantity: Optional[int]
+    currency_code: Optional[str]
+    min_price: Optional[float] = 0
+    max_price: Optional[float] = 0
+    weight: Optional[float] = None
+    length: Optional[int] = None
+    width: Optional[int] = None
+    height: Optional[float] = None
     has_offers: bool = False
-    is_archived: bool = False
+    is_archived: Optional[bool] = False
     category_id: Optional[int]
     created_at: datetime
     updated_at: datetime
