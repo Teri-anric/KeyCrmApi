@@ -42,5 +42,5 @@ class OrderStatusChangeContext(BaseModel):
     has_reserves: bool
 
 class OrderStatusChangeEvent(BaseEvent):
-    event = "order.change_order_status"
+    event: str = "order.change_order_status"
     context: OrderStatusChangeContext
