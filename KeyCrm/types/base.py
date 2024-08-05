@@ -1,10 +1,9 @@
 from pydantic import BaseModel, HttpUrl
-from pydantic.generics import GenericModel
 from typing import List, Optional, Any, TypeVar, Generic, Iterator
 
 ItemType = TypeVar('ItemType')
 
-class ListResponse(GenericModel, Generic[ItemType]):
+class ListResponse(BaseModel, Generic[ItemType]):
     """
     Represents a List response.
     """
